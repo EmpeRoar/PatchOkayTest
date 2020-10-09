@@ -32,7 +32,7 @@ namespace TestOkay.Controllers
         }
 
         [HttpPatch("{ID}")]
-        public virtual async Task<IActionResult> Patch(I ID, JsonPatchDocument<M> patchDoc)
+        public virtual async Task<IActionResult> Patch(I ID, [FromBody] JsonPatchDocument<M> patchDoc)
         {
             return Ok();
         }
