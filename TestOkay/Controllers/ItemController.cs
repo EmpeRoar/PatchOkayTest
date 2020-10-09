@@ -8,7 +8,7 @@ using TestOkay.Model;
 
 namespace TestOkay.Controllers
 {
-    public class ItemController : BaseController<Item>
+    public class ItemController : BaseController<Item, int>
     {
         public ItemController()
         {

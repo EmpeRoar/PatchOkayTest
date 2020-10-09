@@ -4,13 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestOkay.Model;
 
 namespace TestOkay.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public abstract class BaseController<M> :  ControllerBase
-        where M : class
+    public abstract class BaseController<M, I> : ControllerBase
+        where M : class, ICore<I>
+        where I : struct, IConvertible
     {
         public BaseController()
         {
@@ -23,8 +25,14 @@ namespace TestOkay.Controllers
             return Ok();
         }
 
-        [HttpPatch]
-        public virtual async Task<IActionResult> Patch(int ID, JsonPatchDocument<M> patchDoc)
+        [HttpPut("{ID}")]
+        public virtual async Task<IActionResult> Put(I ID)
+        {
+            return Ok();
+        }
+
+        [HttpPatch("{ID}")]
+        public virtual async Task<IActionResult> Patch(I ID, JsonPatchDocument<M> patchDoc)
         {
             return Ok();
         }
